@@ -1,0 +1,87 @@
+# AP_1_ex_2
+K-nearest-neighbors: a server/client implementation (KNN_ClientServer, client)
+
+The server is the KNN classifier. It finds the type(classification) of an input vector by comparing it
+with a data set of classified vectors using the K-nearest-neighbors algorithm.
+
+The client receives input from user, send to server, receives classification back from server,
+and prints to screen.
+
+The server's program takes the following arguments in order:
+1. name of file containing a set of classified vectors formatted as follows:
+    > the values of the vectors must be formatted such that they can be interpreted as floating-point numbers.
+    > this can be in standard or scientific notation (the latter only with a capital "E").
+    > each of the values must be followed by a comma (",") and the last value must be followed by a type name.
+    > each of the vectors must be on separate lines.
+    > the vectors must all be the same size.
+    > there must be no text other than properly fomatted vectors.
+2. port number: must be between 0 and 65536.
+
+The clients program takes the following arguments in order:
+1. ip: server's ip address
+2. port number: the number of the port the server in listening to
+
+The client runs in an infinite loop and receives from user the following arguments in order:
+1. vector which type you would like to find using the server's classifier.
+   enter the vector as follows:
+    - values formatted to be interpreted as floating point numbers (see file requirements above)
+    - each value followed by a space
+    - exactly the same number of values as the vectors in the given file
+2. three letter distance method code. supported distance methods and their codes are as follows:
+    a) "AUC" - Euclidean distance
+    b) "MAN" - Manhattan distance
+    c) "CHB" - Chebyshev distance
+    d) "CAN" - Canberra distance
+    e) "MIN" - Minkowski distance w/default p parameter of 2 (user defined p value is not yet supported)
+3. K-value for the KNN algorithm - must be a positive integer
+
+ 
+Program files:
+    - server_main.cpp
+    - KNN_ClientServer.h
+    - KNN_ClientServer.cpp
+    - KNN_Set.h
+    - KNN_Set.cpp
+    - ClassifiedVector.h
+    - ClassifiedVector.cpp
+    - VectorDist.h
+    - VectorDist.cpp
+    - makefile
+    
+Compile instructions:
+1. open the directory containing the program files with the terminal.
+2. check that directory contains all of the program files above.
+3. enter 'make' command in the terminal to compile.
+
+Program use instructions:
+1. in the terminal, open the directory containing the compiled executable "server.out", "client.out".
+2. to start the program enter the following command:
+
+    "./server.out <data set filename> <port number>"
+
+    then open another terminal and enter:
+
+    "./client.out <ip address> <port number>"
+    
+    - for example "./server.out iris_classified.csv 12345"
+                  "./client.out 127.0.0.1 12345"
+
+if the arguments and file given are valid, both programs will initialize.
+note that the server will compile the file into a dataset of classified vectors.
+
+now you may enter into the client's terminal the arguments discussed above
+in order to find a vector's classification, with your chosen distance metric and k neighbors.
+    
+To find the type of a vector using the given data set, distance function, & k-value using
+the KNN algorithm, enter the vector into the terminal as described above.
+
+The program will then parse the given vector, the distance metric, and the number of neighbors,
+and print the vector's type found using the KNN algorithm (run by the server) with the given parameters.
+
+4. after the type is printed, the client's program will take another input.
+If an invalid input is given, the client's program will print "invalid input" and wait for another input.
+This will continue indefinitely until "-1" is given, which will close the connection.
+
+5. the server, once initialized, will always run and accept clients. If a connection with a client is formed,
+the server will handle this client only until it decides to terminate the connection (using "-1" as input).
+At this point the server will accept new clients, if exist, or wait indefinitely for a client to form a connection.
