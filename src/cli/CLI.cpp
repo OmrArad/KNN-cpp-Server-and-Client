@@ -6,14 +6,18 @@ CLI::CLI(KNN_ClientServer &clientServer, DefaultIO &dio) : dio(dio), noExit(true
                                                            commands(clientServer, dio, noExit){}
 void CLI::start() {
     string choice;
+    map<int, Command&> commandMap = commands.command_map;
     while (noExit) {
         printMenu();
 
-        // get choice from input
-        choice = getChoice();
+        // get choice as int from client/user
+        int cmd_num = getChoice();
 
-        // convert to int
-        int cmd_num = stoi(choice);
+        // -1 to identify an invalid input
+        if (cmd_num == -1) {
+            dio.write("invalid input");
+            continue;
+        }
 
         // set command to given choice
         Command& cmd = commands.command_map.at(cmd_num);
@@ -32,8 +36,18 @@ void CLI::printMenu() {
     }
 }
 
-string CLI::getChoice() {
-    return dio.read(); // validate input here?  yes -akiva
+int CLI::getChoice() {
+    string choice = dio.read();
+    map<int, Command&> commandMap = commands.command_map;
+
+    // validate input. can also be done using regex (remove conditions)
+    if (choice.size() == 1 && isdigit(choice.at(0))) {
+        int cmd_num = stoi(choice);
+        if (commandMap.find(cmd_num) != commandMap.end())
+            return cmd_num; // valid input
+    }
+
+    return -1; // invalid input
 }
 
 Commands::Commands(KNN_ClientServer& clientServer, DefaultIO& dio, bool& noExit)

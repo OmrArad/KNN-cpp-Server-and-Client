@@ -39,7 +39,7 @@ private:
     Commands commands;
     bool noExit;
     void printMenu();
-    string getChoice();
+    int getChoice();
 };
 
 
