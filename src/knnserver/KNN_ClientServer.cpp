@@ -58,7 +58,7 @@ void KNN_ClientServer::classify(DefaultIO& dio) {
 
 void KNN_ClientServer::writeResultsToIO(DefaultIO& dio) {
 
-    if (!(dataExists(dio) && dataClassified(dio)))
+    if (!(dataExists(dio) || !dataClassified(dio)))
         return;
 
 
@@ -73,8 +73,8 @@ void KNN_ClientServer::writeResultsToIO(DefaultIO& dio) {
 
 void KNN_ClientServer::writeResultsToFile(DefaultIO& dio) {
 
-    if (!dataExists(dio)) return;
-    if (!dataClassified(dio)) return;
+    if (!(dataExists(dio) || !dataClassified(dio)))
+        return;
 
     ofstream file("result.txt");
 
