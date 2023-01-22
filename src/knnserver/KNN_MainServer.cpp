@@ -21,7 +21,7 @@ void KNN_MainServer::runAlone(int argc, char **argv) {
 //        int clientSock = server.connectClient();
 
         thread clientServer{KNN_ClientServer::runClientServer, 5};
-        clientServer.join();
+        clientServer.join(); // remove when using with clients
     }
 
 }

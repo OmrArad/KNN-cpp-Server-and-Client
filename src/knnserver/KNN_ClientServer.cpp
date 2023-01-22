@@ -100,20 +100,21 @@ string KNN_ClientServer::getPrintFormat(int i) {
 }
 
 void KNN_ClientServer::downloadResults(DefaultIO& dio) {
-    ifstream file("result.txt");
-    string line;
-
-    if(file.is_open()) {
-        while (getline(file, line)) {
-            dio.write(line);
-        }
-        file.close();
-//        remove(file);
-    }
-    else
-        dio.write("Unable to open file");
-
-    return;
+    dio.readToFile("result.txt");
+//    ifstream file("result.txt");
+//    string line;
+//
+//    if(file.is_open()) {
+//        while (getline(file, line)) {
+//            dio.write(line);
+//        }
+//        file.close();
+////        remove(file);
+//    }
+//    else
+//        dio.write("Unable to open file");
+//
+//    return;
 }
 
 

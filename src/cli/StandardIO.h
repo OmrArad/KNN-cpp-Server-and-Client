@@ -7,6 +7,8 @@
 
 #include "DefaultIO.h"
 #include <iostream>
+#include <fstream>
+
 
 class StandardIO : public DefaultIO{
 public:

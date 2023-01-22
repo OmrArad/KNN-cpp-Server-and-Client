@@ -3,7 +3,7 @@
 //
 
 #include "StandardIO.h"
-//#include <strstream>
+#include <fstream>
 
 StandardIO::StandardIO() : DefaultIO(){}
 
@@ -20,6 +20,20 @@ void StandardIO::write(std::string data) {
 
 void StandardIO::readToFile(std::string filename) {
     string output;
+    ifstream file(filename);
+    ofstream result("myResult.txt");
+    string line;
+
+    if(file.is_open()) {
+        while (getline(file, line)) {
+            result << line << endl;
+        }
+        file.close();
+        result.close();
+//        remove(file);
+    }
+//    else
+//        dio.write("Unable to open file");
 
 }
 

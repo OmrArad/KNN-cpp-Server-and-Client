@@ -18,4 +18,5 @@ void DownloadResults::execute() {
 
     // download the results in a separate thread
     thread download(KNN_ClientServer::downloadResults, ref(dio));
+    download.join(); // remove when using with clients
 }
