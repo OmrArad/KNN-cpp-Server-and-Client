@@ -221,7 +221,7 @@ string KNN_ClientServer::parseK(const string &inputMsg) {
     // parse k value from message
     string kValStr = parseFromBuff(inputMsg, kPat);
 
-    if (kValStr.empty()) return kValStr;
+    if (!kValStr.empty()) return kValStr;
 
     return {};
 }
@@ -304,7 +304,7 @@ void KNN_ClientServer::operateOnInput(std::string input, DefaultIO& dio) {
     //  if valid input: set K and DistMethod
     //  else print error
 
-    if (input == "/n") {
+    if (input.empty()) {
         return;
     } else {
 

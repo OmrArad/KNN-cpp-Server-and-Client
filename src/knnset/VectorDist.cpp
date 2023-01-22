@@ -2,7 +2,7 @@
 
 VectorDist::VectorDist() {
     // initializes the distanceMethodDict
-    distMethodDict = {{"EUC", VectorDist::euclideanDist}, {"MAN", VectorDist::manhattanDist},
+    distMethodDict = {{"AUC", VectorDist::euclideanDist}, {"MAN", VectorDist::manhattanDist},
                       {"CHB", VectorDist::chebyshevDist},{"CAN", VectorDist::canberraDist},
                       {"MIN", VectorDist::minkowskiDist}};
 }

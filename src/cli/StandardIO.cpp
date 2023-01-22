@@ -8,9 +8,10 @@
 StandardIO::StandardIO() : DefaultIO(){}
 
 string StandardIO::read() {
-    string output;
-    cin >> output;
-    return output;
+    string input;
+//    cin >> output;
+    getline(cin, input);
+    return input;
 }
 
 void StandardIO::write(std::string data) {
