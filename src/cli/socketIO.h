@@ -51,7 +51,7 @@ private:
      * Receive data from client, validate input, and if valid, classify and send classification to client
      * @param clientSock client socket
      */
-    void correspond(int clientSock);
+    void correspond(int clientSock); // to be deleted eventually
 
 };
 

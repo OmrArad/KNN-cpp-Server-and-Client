@@ -21,12 +21,15 @@ string socketIO::read() {
 }
 
 void socketIO::write(std::string data) {
-    //send data back to client
+    //send data back to client. can be a line in file, or any other message
     sendTo(clientSock, data);
 }
 
+// confusing name. what is the purpose of this function?
+// we need to receive a file from client to save it in server
 void socketIO::readToFile(std::string filename) {}
 
+// confusing name. the method sends lines from file to client
 void socketIO::writeFromFile(std::string filename) {}
 
 /**
@@ -37,15 +40,6 @@ void socketIO::writeFromFile(std::string filename) {}
  * @param clientSock client socket
  */
 void socketIO::correspond(int clientSock) {
-    /* receive vector, distance method, and k from client */
-
-//    // Receive data from the client
-//    string clientInput = receiveFrom(clientSock);
-//
-//    // if receipt is unsuccessful, receiveFrom returns EOF
-//    if (clientInput == "\\EOF") {
-//        return;
-//    }
 
     /* this part should be in server */
 
